@@ -45,8 +45,8 @@ d3.csv('data/world_bank_2010_gdp_co2.csv',
             maxX = d3.max(rows, function(d){ return d.gdpPerCap; });
         var minY = d3.min(rows, function(d){ return d.co2PerCap; }),
             maxY = d3.max(rows, function(d){ return d.co2PerCap; });
-        var minR = d3.min(rows, function(d){ return d.co2Total; }),
-            maxR = d3.max(rows, function(d){ return d.co2Total; });
+        var minR = d3.min(rows, function(d){ return d.PopTotal; }),
+            maxR = d3.max(rows, function(d){ return d.PopTotal; });
         scaleX.domain([minX, maxX]);
         scaleY.domain([minY, maxY]);
         scaleR.domain([minR, maxR]);
@@ -71,7 +71,7 @@ function draw(rows) {
         .append('g')
         .attr('class', 'node')
         .style('fill',function(d){
-            return 'rgb('+  Math.floor(15*(scaleR(d.co2Total))) +','+ (255-Math.floor(15*(scaleR(d.co2Total)))) +',0)'
+            return 'rgb('+  Math.floor(15*(scaleR(d.PopTotal))) +','+ (255-Math.floor(15*(scaleR(d.PopTotal)))) +',0)'
         })
         .filter(function (d) {
             return d.gdpPerCap && d.co2PerCap;
@@ -83,7 +83,7 @@ function draw(rows) {
 
 
     nodes.append('circle')
-        .attr('r', function(d) {return scaleR(d.co2Total)});
+        .attr('r', function(d) {return scaleR(d.PopTotal)});
     nodes.append('text')
         .text(function (d) {
             return d.country;
